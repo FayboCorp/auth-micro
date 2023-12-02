@@ -30,8 +30,4 @@ class AuthenticationController (val authenticationService: AuthenticationService
 //
 //        return "Only admins can see this"
 //    }
-
-    fun test(){
-
-    }
 }

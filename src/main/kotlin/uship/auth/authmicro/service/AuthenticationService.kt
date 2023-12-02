@@ -8,8 +8,13 @@ import org.springframework.stereotype.Service
 @Service
 class AuthenticationService {
 
-    fun validateEndpoint(webDetails : UserDetails) : ResponseEntity<Void> {
+    fun validateEndpoint(userDetails: UserDetails) : ResponseEntity<Void> {
 
+        val roles = userDetails.authorities
+
+        roles.forEach { role ->
+
+        }
 
         return ResponseEntity.ok().build()
     }
