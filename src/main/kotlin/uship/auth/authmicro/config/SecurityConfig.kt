@@ -19,10 +19,7 @@ class SecurityConfig {
     @Bean
     fun defaultSecurityFilterChain(http: HttpSecurity) : SecurityFilterChain {
         http.authorizeHttpRequests{ auth -> auth
-            .requestMatchers("/auth/student").hasRole("student")
-            .requestMatchers("/auth/admin").hasRole("admin")
-            .requestMatchers("/auth/helloWorld").permitAll()
-
+            .requestMatchers("/auth/validate").authenticated()
         }
             .csrf{ csrf -> csrf.disable() }
             .formLogin(Customizer.withDefaults())
