@@ -20,6 +20,8 @@ class AuthenticationController (val authenticationService: AuthenticationService
         val authenticationDetails = SecurityContextHolder.getContext().authentication.principal
                 as UserDetails
 
+
+
         return authenticationService.validateEndpoint(authenticationDetails)
     }
 

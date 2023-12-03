@@ -6,6 +6,7 @@ plugins {
     kotlin("jvm") version "1.8.22"
     kotlin("plugin.spring") version "1.8.22"
     kotlin("kapt") version "1.8.0"
+    kotlin("plugin.jpa") version "1.8.22"
 }
 
 group = "uship.auth"
@@ -32,12 +33,12 @@ dependencies {
 
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
-    kapt("org.springframework.boot:spring-boot-configuration-processor")
 
     implementation("org.postgresql:postgresql")
 
     compileOnly("org.projectlombok:lombok")
 
+    annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
     annotationProcessor("org.projectlombok:lombok")
 
     //test
