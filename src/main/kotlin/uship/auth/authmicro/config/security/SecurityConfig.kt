@@ -17,33 +17,30 @@ import org.springframework.security.web.SecurityFilterChain
 import javax.sql.DataSource
 
 @Configuration
-class SecurityConfig {
+class SecurityConfig (val uShipAuthProvider: UShipAuthProvider){
 
     @Bean
     fun defaultSecurityFilterChain(http: HttpSecurity) : SecurityFilterChain {
         http.authorizeHttpRequests{ auth -> auth
             .requestMatchers("/auth/validate").authenticated()
+            .requestMatchers("/auth/admin").hasRole("admin")
         }
-            .csrf{ csrf -> csrf.disable() }
             .formLogin(Customizer.withDefaults())
             .httpBasic(Customizer.withDefaults())
+            .authenticationProvider(uShipAuthProvider)
         return http.build()
     }
 
     @Autowired
-    fun configureGlobal(auth: AuthenticationManagerBuilder, userDetails: UShipUserDetails) {
+    fun configureGlobal(auth: AuthenticationManagerBuilder, userDetails: UShipUserDetails, passwordEncoder: PasswordEncoder) {
         auth
             .userDetailsService(userDetails)
-            .passwordEncoder(passwordEncoder())
+            .passwordEncoder(passwordEncoder)
     }
 
     @Bean
     fun userDetailsService(dataSource: DataSource) : UserDetailsService{
         return JdbcUserDetailsManager(dataSource)
-    }
-
-    fun passwordEncoder(): PasswordEncoder {
-        return NoOpPasswordEncoder.getInstance()
     }
 
 }

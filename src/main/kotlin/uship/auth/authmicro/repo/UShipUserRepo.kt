@@ -6,4 +6,4 @@ import uship.auth.authmicro.model.UShipUser
 import java.util.UUID
 
 @Repository
-interface UShipUserRepo : CrudRepository<UShipUser, UUID>
+interface UShipUserRepo : CrudRepository<UShipUser, String>

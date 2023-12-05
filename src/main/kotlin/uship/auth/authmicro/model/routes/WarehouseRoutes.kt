@@ -1,4 +1,4 @@
-package uship.auth.authmicro.routes
+package uship.auth.authmicro.model.routes
 
 enum class WarehouseRoutes (val uri: String, val roles: Array<Roles>) {
 
